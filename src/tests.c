@@ -52,7 +52,11 @@ int   listLength  (Node *headPtr);
 
 void test_initNode_sets_value(void)
 {
-        TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node linkedList;
+    initNode(&linkedList,1);
+
+
+    TEST_ASSERT_TRUE_MESSAGE(linkedList.value==1, "initNode_sets_value Fail");
     
 }
 
@@ -67,8 +71,11 @@ void test_initNode_sets_value(void)
 
 void test_initNode_sets_next_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node linkedList;
+    initNode(&linkedList,1);
+
+
+    TEST_ASSERT_TRUE_MESSAGE(linkedList.nextPtr==NULL, "initNode_sets_next_null Fail");
 }
 
 
@@ -98,8 +105,9 @@ void test_initNode_null_guard(void)
 
 void test_createNode_not_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* newNode=createNode(10);
+    TEST_ASSERT_TRUE_MESSAGE(newNode!=NULL, "createNode_not_null Fail");
+    destroyNode(&newNode);
 }
 
 
@@ -114,8 +122,9 @@ void test_createNode_not_null(void)
 
 void test_createNode_value(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* newNode=createNode(10);
+    TEST_ASSERT_TRUE_MESSAGE(newNode->value==10, "createNode_value Fail");
+    destroyNode(&newNode);
 }
 
 
@@ -129,8 +138,9 @@ void test_createNode_value(void)
 
 void test_createNode_next_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* newNode=createNode(10);
+    TEST_ASSERT_TRUE_MESSAGE(newNode->nextPtr==NULL, "createNode_next_null Fail");
+    destroyNode(&newNode);
 }
 
 
@@ -144,8 +154,9 @@ void test_createNode_next_null(void)
 
 void test_destroyNode_sets_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* newNode=createNode(10);
+    destroyNode(&newNode);
+    TEST_ASSERT_TRUE_MESSAGE(newNode==NULL, "destroyNode_sets_null Fail");
 }
 
 
@@ -160,8 +171,11 @@ void test_destroyNode_sets_null(void)
 
 void test_addFirst_empty_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=NULL;
+    Node* newNode=createNode(10);
+    addFirst(&headPtr,newNode);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==10, "addFirst_empty_list Fail");
+    destroyList(&headPtr);
 }
 
 
@@ -177,8 +191,14 @@ void test_addFirst_empty_list(void)
 
 void test_addFirst_non_empty(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+
+    Node* headPtr=NULL;
+    Node* nodeA=createNode(10);
+    addFirst(&headPtr,nodeA);
+    Node* nodeB=createNode(20);
+    addFirst(&headPtr,nodeB);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==20, "addFirst_non_empty Fail");
+    destroyList(&headPtr);
 }
 
 
@@ -191,8 +211,9 @@ void test_addFirst_non_empty(void)
 
 void test_addFirst_null_headptr(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* nodeA=createNode(10);
+    TEST_ASSERT_TRUE_MESSAGE(addFirst(NULL,nodeA)==-1, "TODO: implement this test.");
+    destroyNode(&nodeA);
 }
 
 
@@ -207,8 +228,11 @@ void test_addFirst_null_headptr(void)
 
 void test_addLast_empty_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=NULL;
+    Node* newNode=createNode(10);
+    addLast(&headPtr,newNode);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==10, "addLast_empty_list Fail");
+    destroyList(&headPtr);
 }
 
 
@@ -224,8 +248,15 @@ void test_addLast_empty_list(void)
 
 void test_addLast_non_empty(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=NULL;
+    Node* nodeA=createNode(10);
+    addLast(&headPtr,nodeA);
+    Node* nodeB=createNode(20);
+    addLast(&headPtr,nodeB);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==10, "addLast_non_empty Fail 1");
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->nextPtr->value==20, "addLast_non_empty Fail 2");
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->nextPtr->nextPtr==NULL, "addLast_non_empty Fail 3");
+    destroyList(&headPtr);
 }
 
 
@@ -238,8 +269,9 @@ void test_addLast_non_empty(void)
 
 void test_addLast_null_guard(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* nodeA=createNode(10);
+    TEST_ASSERT_TRUE_MESSAGE(addLast(NULL,nodeA)==-1, "addLast_null_guard Fail");
+    destroyNode(&nodeA);
 }
 
 
@@ -253,8 +285,12 @@ void test_addLast_null_guard(void)
 
 void test_detachFirst_returns_node(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    Node* detachedNode=detachFirst(&headPtr);
+    TEST_ASSERT_TRUE_MESSAGE(detachedNode->value=10, "detachFirst_returns_node Fail");
+    destroyNode(&headPtr);
+    destroyNode(&detachedNode);
 }
 
 
@@ -268,8 +304,12 @@ void test_detachFirst_returns_node(void)
 
 void test_detachFirst_updates_head(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    Node* detachedNode=detachFirst(&headPtr);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value=20, "detachFirst_updates_head Fail");
+    destroyNode(&headPtr);
+    destroyNode(&detachedNode);
 }
 
 
@@ -282,8 +322,8 @@ void test_detachFirst_updates_head(void)
 
 void test_detachFirst_empty_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=NULL;
+    TEST_ASSERT_TRUE_MESSAGE(detachFirst(&headPtr)==NULL, "detachFirst_empty_list Fail");
 }
 
 
@@ -299,8 +339,13 @@ void test_detachFirst_empty_list(void)
 
 void test_detachValue_found(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    addLast(&headPtr,createNode(30));
+    Node* detachedNode=detachValue(&headPtr,20);
+    TEST_ASSERT_TRUE_MESSAGE(detachedNode->value==20, "detachValue_found Fail 1");
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->nextPtr->value==30, "detachValue_found Fail 2");
+    TEST_ASSERT_TRUE_MESSAGE(detachedNode->nextPtr==NULL, "detachValue_found Fail 3");
 }
 
 
