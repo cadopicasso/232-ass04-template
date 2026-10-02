@@ -360,8 +360,11 @@ void test_detachValue_found(void)
 
 void test_detachValue_head(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(1);
+    addLast(&headPtr,createNode(2));
+    Node* detachedNode=detachValue(&headPtr,1);
+    TEST_ASSERT_TRUE_MESSAGE(detachedNode->value==1, "test_detachValue_head Fail 1");
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==2, "test_detachValue_head Fail 2");
 }
 
 
@@ -375,8 +378,10 @@ void test_detachValue_head(void)
 
 void test_detachValue_not_found(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(1);
+    addLast(&headPtr,createNode(2));
+    Node* detachedNode=detachValue(&headPtr,99);
+    TEST_ASSERT_TRUE_MESSAGE(detachedNode==NULL, "test_detachValue_head Fail 1");
 }
 
 
