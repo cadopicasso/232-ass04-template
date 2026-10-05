@@ -403,29 +403,25 @@ Node* detachFirst(Node **headPtrPtr)
 
 Node* detachLast(Node **headPtrPtr)
 {
-    Node* lastPtr=_findLast(*headPtrPtr);
-    
-    if (lastPtr==NULL){
+    if (headPtrPtr==NULL){
         fprintf(stderr, "detachLast - lastPtr is NULL.\n");
         return NULL;
     }
 
-    if (*headPtrPtr==lastPtr){
-        return detachFirst(headPtrPtr);
-    }
-
     Node *currentPtr = *headPtrPtr;
 
-    while (currentPtr->nextPtr->nextPtr != NULL)
+    if (currentPtr->nextPtr == NULL) {
+        *headPtrPtr = NULL;
+        return currentPtr;
+    }
+
+    while (currentPtr->nextPtr->nextPtr != NULL) {
         currentPtr = currentPtr->nextPtr;
+    }
 
-    currentPtr->nextPtr=NULL;
-
-    _nullify(&lastPtr->nextPtr);
-
-    
-
-    
+    Node *lastPtr = currentPtr->nextPtr;
+    currentPtr->nextPtr = NULL;
+    lastPtr->nextPtr = NULL;
 
     return lastPtr;
 }
