@@ -407,7 +407,7 @@ Node* detachLast(Node **headPtrPtr)
     
     Node* lastPtr=_findLast(*headPtrPtr);
 
-    if (lastPtr->nextPtr==NULL){
+    if (lastPtr==*headPtrPtr){
         return detachFirst(headPtrPtr);
     }
 
@@ -417,8 +417,9 @@ Node* detachLast(Node **headPtrPtr)
         currentPtr = currentPtr->nextPtr;
 
     
-    _nullify(&currentPtr->nextPtr);
+    currentPtr->nextPtr=NULL;
 
+    _nullify(&lastPtr->nextPtr);
     
 
     
