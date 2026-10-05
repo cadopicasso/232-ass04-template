@@ -468,12 +468,11 @@ Node* detachValue(Node **headPtrPtr, int value)
 
     Node *currentPtr = *headPtrPtr;
 
-    while (currentPtr->nextPtr != valPtr){
-        currentPtr=currentPtr->nextPtr;
-    }
+    while (currentPtr->nextPtr != valPtr)
+        currentPtr = currentPtr->nextPtr;
 
-    currentPtr->nextPtr=valPtr->nextPtr;
     
+    currentPtr->nextPtr=valPtr->nextPtr;
 
     _nullify(&valPtr->nextPtr);
     
