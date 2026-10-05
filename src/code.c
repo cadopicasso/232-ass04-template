@@ -448,9 +448,6 @@ Node* detachLast(Node **headPtrPtr)
 
 Node* detachValue(Node **headPtrPtr, int value)
 {
-
-    
-    
     if (headPtrPtr==NULL || *headPtrPtr==NULL){
         fprintf(stderr, "detachValue - valPtr is NULL.\n");
         return NULL;
