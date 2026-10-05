@@ -1,9 +1,5 @@
-//char *AUTHOR_NAME        = (char *) "Your Name";
-//char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this
-// assignment independently, except where explicitly noted and referenced.
-// Any collaboration or use of external resources has been properly cited.
-// I am fully aware of the consequences of academic dishonesty and agree to
-// abide by the university's academic integrity policy.";
+char *AUTHOR_NAME        = (char *) "Caden Johns";
+char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this assignment independently, except where explicitly noted and referenced. Any collaboration or use of external resources has been properly cited. I am fully aware of the consequences of academic dishonesty and agree to abide by the university's academic integrity policy.";
 
 
 #include <stdio.h>
@@ -425,7 +421,7 @@ Node* detachLast(Node **headPtrPtr)
 
     Node *detachedPtr = currentPtr->nextPtr;
 
-    _nullify(&currentPtr->nextPtr);
+    _nullify(&lastPtr->nextPtr);
 
     
 
@@ -476,7 +472,7 @@ Node* detachValue(Node **headPtrPtr, int value)
     currentPtr->nextPtr=valPtr->nextPtr;
     
 
-    _nullify(&currentPtr->nextPtr);
+    _nullify(&lastPtr->nextPtr);
     
     return valPtr;
 }
