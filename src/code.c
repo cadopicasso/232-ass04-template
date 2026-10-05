@@ -407,7 +407,6 @@ Node* detachFirst(Node **headPtrPtr)
 
 Node* detachLast(Node **headPtrPtr)
 {
-    //add detach first functionality
     Node* lastPtr=_findLast(*headPtrPtr);
     
     if (lastPtr==NULL){
@@ -420,7 +419,17 @@ Node* detachLast(Node **headPtrPtr)
         return lastPtr;
     }
 
+    Node *currentPtr = *headPtrPtr;
+
+    while (currentPtr->nextPtr != lastPtr){
+        currentPtr=currentPtr->nextPtr;
+    }
+
+    currentPtr->nextPtr=NULL;
+
     _nullify(&lastPtr->nextPtr);
+
+    
 
     return lastPtr;
 }
@@ -446,6 +455,7 @@ Node* detachLast(Node **headPtrPtr)
 
 Node* detachValue(Node **headPtrPtr, int value)
 {
+
     Node* valPtr=_findValue(*headPtrPtr,value);
     
     if (valPtr==NULL){
@@ -458,6 +468,13 @@ Node* detachValue(Node **headPtrPtr, int value)
         return valPtr;
     }
 
+    Node *currentPtr = *headPtrPtr;
+
+    while (currentPtr->nextPtr != valPtr){
+        currentPtr=currentPtr->nextPtr;
+    }
+
+    currentPtr->nextPtr=valPtr->nextPtr;
     
 
     _nullify(&valPtr->nextPtr);
@@ -486,7 +503,7 @@ int deleteFirst(Node **headPtrPtr)
 {
     Node* detachedFirstPtr=detachFirst(headPtrPtr);
 
-    if (detachedFirstPtr==NULL){
+    if (!detachedFirstPtr){
         fprintf(stderr, "deleteFirst - detachedFirstPtr is NULL.\n");
         return -1;
     }
@@ -596,8 +613,17 @@ void destroyList(Node **headPtrPtr)
 
 int printList(Node *headPtr)
 {
-    // TODO
-    return -1;
+    Node *current=headPtr;
+
+    if (!current){
+        return -1;
+    }
+
+    while (current->nextPtr!=NULL){
+        printf("Value: %d \n", current->value);
+        current=current->nextPtr;
+    }
+    return 0;
 }
 
 
@@ -610,6 +636,16 @@ int printList(Node *headPtr)
 
 int listLength(Node *headPtr)
 {
-    // TODO
-    return 0;
+    Node *current=headPtr;
+    int len=1;
+
+    if (current==NULL){
+        return 0;
+    }
+
+    while (current->nextPtr!=NULL){
+        len+=1;
+        current=current->nextPtr;
+    }
+    return len;
 }
