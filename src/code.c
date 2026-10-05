@@ -159,6 +159,10 @@ static Node* _findValue(Node *headPtr, int value)
         }
         currentPtr=currentPtr->nextPtr;
     }
+
+    if (currentPtr->value==value){
+            return currentPtr;
+        }
     return NULL;
 }
 
@@ -451,7 +455,10 @@ Node* detachValue(Node **headPtrPtr, int value)
     if (headPtrPtr == NULL)
         return NULL;
 
-    if (_findValue(*headPtrPtr, value) == NULL) {
+
+    Node *valPtr=_findValue(*headPtrPtr, value);
+
+    if (valPtr== NULL) {
         fprintf(stderr, "detachValue - valPtr is NULL \n", value);
         return NULL;
     }
@@ -466,13 +473,12 @@ Node* detachValue(Node **headPtrPtr, int value)
         currentPtr = currentPtr->nextPtr;
 
         
-    Node *detachedPtr = currentPtr->nextPtr;
 
-    currentPtr->nextPtr = detachedPtr->nextPtr;
+    currentPtr->nextPtr = valPtr->nextPtr;
 
-    _nullify(&detachedPtr->nextPtr);
+    _nullify(&valPtr->nextPtr);
 
-    return detachedPtr;
+    return valPtr;
 }
 
 

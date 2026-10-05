@@ -1,6 +1,6 @@
 #ifndef UNITY_H
 #define UNITY_H
-#include "unity.h"
+#include "../lib/unity.h"
 #endif
 #include <stdlib.h>
 
@@ -437,6 +437,15 @@ void test_deleteValue_found(void)
     TEST_ASSERT_TRUE_MESSAGE(listLength(headPtr)==2, "test_deleteValue_found Fail 2");
     //TEST_ASSERT_TRUE_MESSAGE(_findValue(headPtr,20)==NULL, "test_deleteValue_found Fail 3");
     destroyList(&headPtr);
+
+
+    Node* headPtr1=createNode(10);
+    addLast(&headPtr1,createNode(20));
+    addLast(&headPtr1,createNode(30));
+    TEST_ASSERT_TRUE_MESSAGE(deleteValue(&headPtr1,30)==0, "test_deleteValue_found Fail 3");
+    TEST_ASSERT_TRUE_MESSAGE(headPtr1->nextPtr->nextPtr==NULL, "test_deleteValue_found Fail 4");
+    //TEST_ASSERT_TRUE_MESSAGE(_findValue(headPtr,20)==NULL, "test_deleteValue_found Fail 3");
+    destroyList(&headPtr1);
 }
 
 
