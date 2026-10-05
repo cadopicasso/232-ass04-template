@@ -420,9 +420,10 @@ Node* detachLast(Node **headPtrPtr)
 
     Node *currentPtr = *headPtrPtr;
 
-    while (currentPtr->nextPtr != lastPtr){
-        currentPtr=currentPtr->nextPtr;
-    }
+    while (currentPtr->nextPtr->nextPtr != NULL)
+        currentPtr = currentPtr->nextPtr;
+
+    Node *detachedPtr = currentPtr->nextPtr;
 
     _nullify(&currentPtr->nextPtr);
 
