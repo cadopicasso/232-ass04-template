@@ -224,13 +224,14 @@ Node* createNode(int value)
 {
     Node *newNodePtr = malloc(sizeof(Node));
 
-    if (newNodePtr==NULL){
-        //find this out
+    if (newNodePtr!=NULL){
+        initNode(newNodePtr,value);
+        return newNodePtr;
     }
 
-    initNode(newNodePtr,value);
+    
 
-    return newNodePtr;
+    return NULL;
 }
 
 

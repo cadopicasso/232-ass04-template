@@ -397,8 +397,10 @@ void test_detachValue_not_found(void)
 
 void test_deleteFirst_removes_node(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(1);
+    addLast(&headPtr,createNode(2));
+    deleteFirst(&headPtr);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr->value==2, "test_deleteFirst_removes_node Fail");
 }
 
 
@@ -411,8 +413,9 @@ void test_deleteFirst_removes_node(void)
 
 void test_deleteFirst_empty_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr;
+    
+    TEST_ASSERT_TRUE_MESSAGE(deleteFirst(&headPtr)==-1, "test_deleteFirst_empty_list Fail");
 }
 
 
@@ -429,8 +432,13 @@ void test_deleteFirst_empty_list(void)
 
 void test_deleteValue_found(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    addLast(&headPtr,createNode(30));
+    TEST_ASSERT_TRUE_MESSAGE(deleteValue(&headPtr,20)==0, "test_deleteValue_found Fail 1");
+    TEST_ASSERT_TRUE_MESSAGE(listLength(headPtr)==2, "test_deleteValue_found Fail 2");
+    //TEST_ASSERT_TRUE_MESSAGE(_findValue(headPtr,20)==NULL, "test_deleteValue_found Fail 3");
+    destroyList(&headPtr);
 }
 
 
@@ -446,8 +454,11 @@ void test_deleteValue_found(void)
 
 void test_deleteValue_not_found(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    TEST_ASSERT_TRUE_MESSAGE(deleteValue(&headPtr,99)==-1, "test_deleteValue_not_found Fail 1");
+    TEST_ASSERT_TRUE_MESSAGE(listLength(headPtr)==2, "test_deleteValue_not_found Fail 2");
+    destroyList(&headPtr);
 }
 
 
@@ -461,8 +472,11 @@ void test_deleteValue_not_found(void)
 
 void test_destroyList_empties_list(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    addLast(&headPtr,createNode(30));
+    destroyList(&headPtr);
+    TEST_ASSERT_TRUE_MESSAGE(headPtr==NULL, "test_destroyList_empties_list Fail");
 }
 
 
@@ -475,8 +489,8 @@ void test_destroyList_empties_list(void)
 
 void test_listLength_empty(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr;
+    TEST_ASSERT_TRUE_MESSAGE(listLength(headPtr)==0, "test_listLength_empty Fail");
 }
 
 
@@ -491,8 +505,10 @@ void test_listLength_empty(void)
 
 void test_listLength_three(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr=createNode(10);
+    addLast(&headPtr,createNode(20));
+    addLast(&headPtr,createNode(30));
+    TEST_ASSERT_TRUE_MESSAGE(listLength(headPtr)==3, "test_listLength_empty Fail");
 }
 
 
@@ -505,6 +521,7 @@ void test_listLength_three(void)
 
 void test_printList_empty(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node* headPtr;
+    
+    TEST_ASSERT_TRUE_MESSAGE(printList(headPtr)==-1, "TODO: implement this test.");
 }
