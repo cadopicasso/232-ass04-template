@@ -1,6 +1,3 @@
-char *AUTHOR_NAME        = (char *) "Caden Johns";
-char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this assignment independently, except where explicitly noted and referenced. Any collaboration or use of external resources has been properly cited. I am fully aware of the consequences of academic dishonesty and agree to abide by the university's academic integrity policy.";
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -416,7 +413,7 @@ Node* detachLast(Node **headPtrPtr)
 
     Node *currentPtr = *headPtrPtr;
 
-    while (currentPtr->nextPtr->nextPtr != NULL)
+    while (currentPtr->nextPtr != lastPtr)
         currentPtr = currentPtr->nextPtr;
 
     _nullify(&lastPtr->nextPtr);
@@ -458,6 +455,10 @@ Node* detachValue(Node **headPtrPtr, int value)
     }
 
     Node* valPtr=_findValue(*headPtrPtr,value);
+
+    if (valPtr==NULL){
+        return NULL;
+    }
 
     if (*headPtrPtr==valPtr){
         return detachFirst(headPtrPtr);

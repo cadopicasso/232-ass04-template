@@ -53,28 +53,34 @@ int main(void)
     RUN_TEST(test_createNode_not_null);
     RUN_TEST(test_createNode_value);
     RUN_TEST(test_createNode_next_null);
+    
     RUN_TEST(test_destroyNode_sets_null);
     RUN_TEST(test_addFirst_empty_list);
     RUN_TEST(test_addFirst_non_empty);
     RUN_TEST(test_addFirst_null_headptr);
     RUN_TEST(test_addLast_empty_list);
+    
     RUN_TEST(test_addLast_non_empty);
     RUN_TEST(test_addLast_null_guard);
     RUN_TEST(test_detachFirst_returns_node);
     RUN_TEST(test_detachFirst_updates_head);
     RUN_TEST(test_detachFirst_empty_list);
     RUN_TEST(test_detachValue_found);
+    
     RUN_TEST(test_detachValue_head);
+    
     RUN_TEST(test_detachValue_not_found);
+    
     RUN_TEST(test_deleteFirst_removes_node);
+    
     RUN_TEST(test_deleteFirst_empty_list);
     RUN_TEST(test_deleteValue_found);
+    
     RUN_TEST(test_deleteValue_not_found);
     RUN_TEST(test_destroyList_empties_list);
     RUN_TEST(test_listLength_empty);
     RUN_TEST(test_listLength_three);
     RUN_TEST(test_printList_empty);
-
     return UNITY_END();
 }
 
