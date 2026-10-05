@@ -419,7 +419,7 @@ Node* detachLast(Node **headPtrPtr)
     while (currentPtr->nextPtr->nextPtr != NULL)
         currentPtr = currentPtr->nextPtr;
 
-    Node *detachedPtr = currentPtr->nextPtr;
+    currentPtr->nextPtr=NULL;
 
     _nullify(&lastPtr->nextPtr);
 
