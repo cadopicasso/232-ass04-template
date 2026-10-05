@@ -415,8 +415,7 @@ Node* detachLast(Node **headPtrPtr)
     }
 
     if (*headPtrPtr==lastPtr){
-        detachFirst(headPtrPtr);
-        return lastPtr;
+        return detachFirst(headPtrPtr);
     }
 
     Node *currentPtr = *headPtrPtr;
@@ -464,8 +463,7 @@ Node* detachValue(Node **headPtrPtr, int value)
     }
 
     if (*headPtrPtr==valPtr){
-        detachFirst(headPtrPtr);
-        return valPtr;
+        return detachFirst(headPtrPtr);
     }
 
     Node *currentPtr = *headPtrPtr;
