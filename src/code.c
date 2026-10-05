@@ -425,7 +425,7 @@ Node* detachLast(Node **headPtrPtr)
         currentPtr=currentPtr->nextPtr;
     }
 
-    currentPtr->nextPtr=NULL;
+    currentPtr->nextPtr=lastPtr->nextPtr;
 
     _nullify(&lastPtr->nextPtr);
 
