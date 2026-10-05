@@ -424,9 +424,9 @@ Node* detachLast(Node **headPtrPtr)
         currentPtr=currentPtr->nextPtr;
     }
 
-    currentPtr->nextPtr=lastPtr->nextPtr;
+    _nullify(&currentPtr->nextPtr);
 
-    _nullify(&lastPtr->nextPtr);
+    
 
     
 
@@ -475,8 +475,8 @@ Node* detachValue(Node **headPtrPtr, int value)
     currentPtr->nextPtr=valPtr->nextPtr;
     
 
-    _nullify(&valPtr->nextPtr);
-
+    _nullify(&currentPtr->nextPtr);
+    
     return valPtr;
 }
 
